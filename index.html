@@ -21,7 +21,7 @@
         z-index: 2;
         position: absolute;
         top: 100px;
-        left: 300px;
+        left: 50px;
         height: 50%;
       }
     </style>
@@ -34,8 +34,9 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 51.5074, lng: 0.1278},
-          zoom: 5, scaleControl: true,
-          zoomControl: false
+          zoom: 5, scaleControl: false,
+          zoomControl: false,
+          guestureHandling: 'cooperative'
         });
       }
     </script>
