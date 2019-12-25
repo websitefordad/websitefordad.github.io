@@ -33,12 +33,20 @@
     <div id="map"></div>
     <script>
       var map;
+      var updateSize = function() {
+          let metersPerPixel = 156543.03392 * Math.cos(map.center.lat() * Math.PI / 180) / Math.pow(2, map.zoom);
+           let kmPerPixel = metersPerPixel / 1000.0;
+           let kmWidthOfUk = 1078.0;
+           let widthOfPic = (kmWidthOfUk * 1000) / metersPerPixel;
+           widthOfPic = String(Math.floor(widthOfPic));
+           document.getElementsByTagName("img")[0].width = widthOfPic;
+      };
       function initMap() {
         let url = new URL(window.location.href);
         let latFromUrlParam = url.searchParams.get("lat");
         let longFromUrlParam = url.searchParams.get("long");
-        latFromUrlParam = (latFromUrlParam) ? Number(latFromUrlParam) : 51.5074;
-        longFromUrlParam = (longFromUrlParam) ? Number(longFromUrlParam) : 0.1278;
+        latFromUrlParam = (latFromUrlParam) ? Number(latFromUrlParam) : 54.786826051560574;
+        longFromUrlParam = (longFromUrlParam) ? Number(longFromUrlParam) : -4.255790353064472;
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: latFromUrlParam, lng: longFromUrlParam},
             zoom: 5, scaleControl: true,
@@ -47,16 +55,9 @@
             guestureHandling: 'cooperative',
             mapTypeId: 'satellite'
         });
-        map.addListener('center_changed', function() {
-           let metersPerPixel = 156543.03392 * Math.cos(map.center.lat() * Math.PI / 180) / Math.pow(2, map.zoom);
-           let kmPerPixel = metersPerPixel / 1000.0;
-           let kmWidthOfUk = 1078.0;
-           let widthOfPic = (kmWidthOfUk * 1000) / metersPerPixel;
-           let testWidth = String(Math.floor(103.45020));
-           widthOfPic = String(Math.floor(widthOfPic));
-           console.log(widthOfPic + " " + typeof widthOfPic + " " + testWidth + " " + typeof testWidth);
-           document.getElementsByTagName("img")[0].width = widthOfPic;
-        });
+        updateSize();
+        map.addListener('center_changed', updateSize);
+        map.addListener('center_changed', updateSize);
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqTd9wa4n0IhE56GN586e1zZkwrZ-vyA&callback=initMap"
