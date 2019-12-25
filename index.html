@@ -34,6 +34,7 @@
     <script>
       var map;
       function initMap() {
+        let url = new URL(window.location.href);
         let latFromUrlParam = url.searchParams.get("lat");
         let longFromUrlParam = url.searchParams.get("long");
         latFromUrlParam = (latFromUrlParam) ? Number(latFromUrlParam) : 51.5074;
