@@ -26,6 +26,7 @@
         left: 0;
         right: 0;
         bottom: 0;
+        transition-duration: 1s;
         user-drag: none; 
         user-select: none;
         -moz-user-select: none;
@@ -46,8 +47,8 @@
            let kmPerPixel = metersPerPixel / 1000.0;
            let kmWidthOfUk = 1078.0;
            let widthOfPic = (kmWidthOfUk * 1000) / metersPerPixel;
-           widthOfPic = String(Math.floor(widthOfPic));
-           document.getElementsByTagName("img")[0].width = widthOfPic;
+           let scale = widthOfPic / 200;
+           document.getElementsByTagName("img")[0].style.transform = "scale(" + scale + ")";
       };
       function initMap() {
         let url = new URL(window.location.href);
