@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Map for Dad</title>
+    <title>Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <meta charset="utf-8">
@@ -81,7 +81,7 @@ function debounce(func, wait, immediate) {
             zoomControl: true,
             rotateControl: true,
             guestureHandling: 'cooperative',
-            mapTypeId: 'satellite'
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         updateSize();
         map.addListener('center_changed', updateSize);
