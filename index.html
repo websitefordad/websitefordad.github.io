@@ -47,6 +47,7 @@
            let kmPerPixel = metersPerPixel / 1000.0;
            let kmWidthOfUk = 1078.0;
            let widthOfPic = (kmWidthOfUk * 1000) / metersPerPixel;
+           widthOfPic = Math.floor(widthOfPic);
            let scale = widthOfPic / 200;
            document.getElementsByTagName("img")[0].style.transform = "scale(" + scale + ")";
       };
