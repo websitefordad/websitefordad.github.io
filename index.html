@@ -66,11 +66,20 @@
         let scale = widthOfPic / 200;
         document.getElementsByTagName("img")[0].style.transform = "scale(" + scale + ")";
       }, 40);
+	    
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      };
       
       function initMap() {
-        let url = new URL(window.location.href);
+        /*let url = new URL(window.location.href);
         let latFromUrlParam = url.searchParams.get("lat");
-        let longFromUrlParam = url.searchParams.get("long");
+        let longFromUrlParam = url.searchParams.get("long");*/
+        let latFromUrlParam = getUrlParameter("lat");
+        let longFromUrlParam = getUrlParameter("long");
         latFromUrlParam = (latFromUrlParam) ? Number(latFromUrlParam) : 54.786826051560574;
         longFromUrlParam = (longFromUrlParam) ? Number(longFromUrlParam) : -4.255790353064472;
         map = new google.maps.Map(document.getElementById('map'), {
