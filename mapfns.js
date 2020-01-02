@@ -45,7 +45,9 @@ function initMap() {
       zoomControl: true,
       rotateControl: true,
       guestureHandling: 'cooperative',
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      fullscreenControl: false,
+      streetViewControl: false
   });
   updateSize();
   map.addListener('center_changed', updateSize);
